@@ -1,0 +1,2 @@
+NONAME.Players = {}
+NONAME.Player = {}
