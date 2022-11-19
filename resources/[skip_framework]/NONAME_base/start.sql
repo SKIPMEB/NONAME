@@ -6,4 +6,4 @@ USE `NONAME`;
 CREATE TABLE `users`(
     `identifier` varchar(40) NOT NULL,
     PRIMARY KEY (`identifier`)
-);
+);INSERT INTO users (identifier)

@@ -19,7 +19,8 @@ server_scripts {
     'server/player.lua',
     'server/events.lua',
     'server/discord.lua',
-
+    'server/gameplay.lua',
+    'shared/shared.lua'
 }
 
 dependency 'oxmysql'
