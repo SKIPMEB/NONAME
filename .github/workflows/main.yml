@@ -1,2 +1,0 @@
-- name: luacheck for FiveM
-  uses: GoatG33k/fivem-lua-lint-action@v1
