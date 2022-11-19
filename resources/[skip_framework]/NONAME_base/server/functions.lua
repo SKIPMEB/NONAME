@@ -30,38 +30,6 @@ function NONAME.Functions.GetPlayer(source)
     end
 end
 
---On start
-
-
---On Join
-AddEventHandler('playerConnecting',function (name, setKickReasson,deferrals)
-    local source = source
-    local identifiers = GetPlayerIdentifiers(source)
-    local identifier
-    
-    for k, v in ipairs(identifiers) do
-        if string.match(v, 'steam:') then
-            identifier = v
-
-            break
-        end
-    end
-    if not identifier then 
-        deferrals.done('You need to open steam')
-    else
-        deferrals.done()
-        MySQL.scalar('SELECT 1 FROM users WHERE identifier = ?', { 
-            identifier
-        }, function(result)
-            if not result then
-                MySQL.insert('INSERT INTO users (identifier) VALUES (@identifier)', {
-                      ['@identifier'] = identifier
-                })
-            end 
-     end)
-   end 
-end)
-
 
 
 -- Callback Functions --
