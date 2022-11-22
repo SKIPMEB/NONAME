@@ -21,5 +21,5 @@ NONAME.DB.doseUserExist = function(identifier, callback)
 end
 
 NONAME.DB.SavePlayer = function(source, identifier)
-    print
+    print('[NONAME_base] ' .. GetPlayerName(source) .. ' was saved success')
 end
