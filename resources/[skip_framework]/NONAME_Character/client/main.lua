@@ -51,8 +51,8 @@ end)
 function verifyName(name)
     for k, v in ipairs(bannedNames) do
         if name == v  then
-            local reason = 'Trying tu use banned name'
-            dropplayer(source,reason    )
+            local reason = 'Trying to use banned name'
+            dropPlayer(source,reason)
         end
     end
     local nameLength = string.len(name)
@@ -87,7 +87,7 @@ function verifyName(name)
     return ""
 end
 
-RegisterNUICallback('deleteCharacter'function(data)
+RegisterNUICallback('deleteCharacter',function(data)
     local CharData = data
     TriggerServerEvent('NONAME_Character:deleteChar', Chardata)
 
