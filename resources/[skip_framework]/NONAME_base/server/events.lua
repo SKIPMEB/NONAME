@@ -28,7 +28,16 @@ AddEventHandler('playerConnecting',function (name, setKickReasson,deferrals)
 end)
 
 --FROM START
+NONAME.Functions.RegisterServerCallback = function(name, cb)
+	NONAME.ServerCallbacks[name] = cb
+end
 
+
+NONAME.Functions.TriggerServerCallback = function(name, requestId, source, cb, ...)
+	if NONAME.ServerCallbacks[name] ~= nil then
+		NONAME.ServerCallbacks[name](source, cb, ...)
+	end
+end
 
 
 -- Callback Events --

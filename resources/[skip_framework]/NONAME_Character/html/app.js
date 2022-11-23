@@ -37,17 +37,19 @@ $(document).ready(function(){
                 })
             }
         }
-
-        $('.play-button').click(Function(e)){
+        
+        $(".play-button").click(function (e) {
             e.preventDefault();
             var characterid = $(this).data('cid');
-            $.post('http://NONAME_Character/selectCharacter'), JSON.stringify({
+
+            $.post('http://NONAME_Character/selectCharacter', JSON.stringify({
                 cid: characterid
-            })
+                // close UI
+            }));
+
             $(".multichar-container").fadeOut(250);
             $(".body-wrapper").hide();
-        }
-
+        });
         $('delete-button').click(function(e){
             e.preventDefault();
             var characterid = $(this).data('cid');

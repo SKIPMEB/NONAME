@@ -25,6 +25,17 @@ end
 
 
 -- Callback Events --
+NONAME.Functions.TriggerServerCallback = function(name, cb, ...) -- Callback a responce to function
+	NONAME.ServerCallbacks[NONAME.CurrentRequestId] = cb
+
+	TriggerServerEvent("NONAME-Base:server:triggerServerCallback", name, NONAME.CurrentRequestId, ...)
+
+	if NONAME.CurrentRequestId < 65535 then
+		NONAME.CurrentRequestId = NONAME.CurrentRequestId + 1
+	else
+		NONAME.CurrentRequestId = 0
+	end
+end
 
 -- Client Callback
 RegisterNetEvent('NONAME:Client:TriggerClientCallback', function(name, ...)

@@ -15,7 +15,7 @@ Citizen.CreateThread(function()
             TriggerEvent('NOMANE_Character:Char:StartCamera')
             TriggerEvent('NONAME_ui:client:closeCharui')
             TriggerEvent('NOMANE_Character:PlayerLogin')
-            selectedChar(true)
+            SelectChar(true)
             return
         end
     end
@@ -24,7 +24,7 @@ end)
 
 RegisterNetEvent('NOMANE_Character:Char:Selecting')
 AddEventHandler('NOMANE_Character:Char:Selecting', function()
-    selectedChar(true)
+    SelectChar(true)
 end)
 
 GetCID = function (source,cb)
@@ -33,10 +33,10 @@ GetCID = function (source,cb)
 end
 
 RegisterNUICallback('createCharacter',function(data)
-    local Chardata = data.Chardata
+    local CharData = data.Chardata
     for theData, value in pains(CharData) do
         if theData == 'firstname' or theData == 'lastname' then
-            reason = verifyname(value)
+            reason = verifyName(value)
             print(reason) --removes later
             if reason ~= '' then
                 break
@@ -61,7 +61,7 @@ function verifyName(name)
     end
 
     local count = 0
-    for 1 in name:gmatch("[abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ-]")
+    for i in name:gmatch("[abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ-]") do
     count = count + 1
     end
     if count ~= nameLength then
@@ -89,20 +89,20 @@ end
 
 RegisterNUICallback('deleteCharacter',function(data)
     local CharData = data
-    TriggerServerEvent('NONAME_Character:deleteChar', Chardata)
+    TriggerServerEvent('NONAME_Character:deleteChar', CharData)
 
 end)
 
 RegisterNetEvent('NONAME_Character:setupCharacter')
 AddEventHandler('NONAME_Character:setupCharacter',function()
-    NONAME.Function.TriggerServerCallback('NONAME_Character:GetChar'function(data)
+    NONAME.Function.TriggerServerCallback('NONAME_Character:GetChar',function(data)
          SendNuiMessage({type = 'setupCharacters', characters = data})
     end)
 end)
 
 RegisterNUICallback('selectCharacters',function(data)
     local cid = tonumber(data.cid)
-    selectedChar(false)
+    SelectChar(false)
     TriggerServerEvent('NONAME_Characters:Char:ServerSelect', cid)
     TriggerEvent('NONAME_Spawn:openMenu')
     SetTimecycelModifer('default')
@@ -111,16 +111,16 @@ RegisterNUICallback('selectCharacters',function(data)
 end)
 
 RegisterNUICallback('CloseChar', function()
-    selectedChar(false)
+    SelectChar(false)
 end)
 
-function SelectedChar(value)
+function SelectChar(value)
     SetNuiFocus(value,value)
     SendNuiMessage(
-        type = 'charSelect',
-        status = value
+        type == 'charSelect',
+        status == value
     )
-    SelectingChar = false
+    selectingChar = value
 end
 
 RegisterNetEvent('NOMANE_Character:char:Startcam')
