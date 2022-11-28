@@ -136,7 +136,7 @@ $(".accept-create").click(function (e) {
 
     // Need to sanitize these inputs...
 
-    $.post('http://MP-Base/createCharacter', JSON.stringify({
+    $.post('http://NONAME_Character/createCharacter', JSON.stringify({
         charData: data
     }))
     entered = false;
