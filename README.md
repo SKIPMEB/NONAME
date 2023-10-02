@@ -1,2 +1,0 @@
-# NONAME
-SKIP95#0103 o Frog.#0666
